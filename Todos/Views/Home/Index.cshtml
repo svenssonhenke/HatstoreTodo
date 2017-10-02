@@ -1,0 +1,29 @@
+﻿@model Todos.Models.TodoViewModel
+<h1>Todos</h1>
+<div class="col-xs-12">
+    <div id="todoList">
+        @if (Model.TodoItems.Any())
+        {
+            foreach (var todo in Model.TodoItems)
+            {
+                <p>@Html.Partial("~/Views/Shared/TodoItem.cshtml", todo)</p>
+            }
+        }
+        else
+        {
+            <div id="NoTodosText">No Todos to do!</div>
+        }
+    </div>
+</div>
+<div class="AddNewSection row">
+    <div class="col-xs-10">
+        <label for="createTodoText">Add new Todo</label>
+        <div class="input-group">
+            <input type="text" id="createTodoText" class="form-control" name="createTodoText" />
+            <span class="input-group-btn">
+                @Html.ActionLink("Add", "Create", null, new { @id = "createNewTodo", @class = "btn btn-primary" })
+            </span>
+        </div>
+    </div>
+</div>
+

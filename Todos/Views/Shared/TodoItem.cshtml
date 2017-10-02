@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+@model Todos.Models.TodoItem
+
+@{
+    var textDecorationClass = Model.Done ? "done" : "";
+    var disabledInput = Model.Done ? "disabled" : "";
+}
+<div class="row">
+    <div class="todoItem">
+        <div class="form-group col-xs-8">
+            <div class="input-group">
+                <input type="text" class="todoItemText @textDecorationClass form-control" value="@Model.Text" id="@Model.Id" @disabledInput />
+                <span class="input-group-btn">
+                    @if (Model.Done)
+                    {
+                        @*@Html.ActionLink("Done", "SetDone", "Home", null, new { @class = "setDone btn btn-default icon-refresh" })*@
+                        <a href="@Url.Action("SetDone", "Home")" class="setDone btn btn-default">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                        </a>
+                        @Html.ActionLink("X", "Delete", "Home", null, new { @class = "delete btn btn-warning" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Done", "SetDone", "Home", null, new { @class = "setDone btn btn-success" })
+                    }
+
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
